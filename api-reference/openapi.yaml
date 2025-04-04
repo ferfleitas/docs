@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: API de S-MEC
+  version: 1.0.0
+  description: >-
+
+    # Documentación de la API de SMEC
+
+
+    Esta API permite la gestión integral de pacientes, consultas e informes para
+    La SMEC.
+
+
+    ## Características
+
+
+    * **Pacientes**: Registro y consulta de información de pacientes.
+
+    * **Laboratorio**: Registro y seguimiento de análisis laboratoriales.
+
+    * **Informes**: Generación de reportes y estadísticas.
+
+
+    ## Autenticación
+
+
+    Todos los endpoints protegidos requieren autenticación mediante un token
+    JWT.
+
+    Para obtener un token, utiliza el [endpoint de
+    login](#tag/Autenticacion/paths/~1login/post).
+
+
+    ```
+
+    Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9...
+
+    ```
+
+
+    ## Recursos adicionales
+
+
+    * [Manual](https://example.com/manual)
+
+    * [Guía de desarrollo](https://example.com/dev-guide)
+
+    * [Contacto de soporte](mailto:soporte@smec.com)
+
+
+    > **Nota importante**: Esta API está destinada únicamente para uso
+    autorizado.
+
+    > El acceso no autorizado está prohibido y será monitoreado.
+                
+  contact:
+    name: Equipo de Desarrollo SMEC
+    email: desarrollo@smec.com
+    url: https://smec.com/contacto
+servers:
+  - url: http://localhost:52000
+    description: Servidor local de desarrollo
+paths:
+  /v1/login:
+    post:
+      tags:
+        - Autenticacion
+      summary: Servicio de logueo
+      description: Permite autenticar un usuario o renovar su refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                  example: '111111'
+                password:
+                  type: string
+                  example: '123456'
+      responses:
+        '200':
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  token:
+                    type: string
+                  id:
+                    type: string
+                  username:
+                    type: string
+                  nombre:
+                    type: string
+                  apellido:
+                    type: string
+                  usuarioActivo:
+                    type: boolean
+                  rolId:
+                    type: integer
+                  permisoEliminar:
+                    type: boolean
+                  menus:
+                    type: array
+                    items:
+                      type: object
+        '400':
+          description: Falta un parámetro
+        '401':
+          description: Credencial incorrecta
+  /v1/persona/agendamiento:
+    post:
+      summary: Servicio de registro de personas con agendamiento
+      tags:
+        - Persona
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+          required: true
+          description: "Bearer token de autenticación (Formato: 'Bearer <token>')"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cedula
+                - nombre
+                - apellido
+                - fechaNacimiento
+                - perfilId
+                - ubicacionId
+                - plantaTrabajoId
+                - empresaId
+                - fechaAgendamiento
+                - puestoTrabajo
+                - sexoId
+                - realizaElectrocardiograma
+                - realizaRadiografia
+              properties:
+                cedula:
+                  type: string
+                  example: "3391416"
+                nombre:
+                  type: string
+                  example: "Rodrigo"
+                apellido:
+                  type: string
+                  example: "Santos"
+                fechaNacimiento:
+                  type: string
+                  format: date
+                  example: "1991-08-21"
+                perfilId:
+                  type: integer
+                  example: 1
+                ubicacionId:
+                  type: integer
+                  example: 1
+                plantaTrabajoId:
+                  type: integer
+                  example: 1
+                empresaId:
+                  type: integer
+                  example: 1
+                fechaAgendamiento:
+                  type: string
+                  format: date
+                  example: "2025-01-15"
+                puestoTrabajo:
+                  type: string
+                  example: "Cocina"
+                sexoId:
+                  type: string
+                  example: "1"
+                realizaElectrocardiograma:
+                  type: boolean
+                  example: true
+                realizaRadiografia:
+                  type: boolean
+                  example: false
+      responses:
+        '200':
+          description: Persona registrada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  personaId:
+                    type: integer
+                    example: 1
+        '400':
+          description: Falta un parámetro
+        '401':
+          description: Credencial incorrecta
+components: {}
+tags: []

@@ -1,33 +1,52 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: 'Autenticación API S-MEC'
+description: 'Cómo autenticarse para usar los endpoints de la API de S-MEC'
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  Este apartado detalla el proceso de autenticación específico para la API de S-MEC.
 </Note>
 
-## Welcome
+## Introducción a la Autenticación
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+La API de S-MEC utiliza un esquema de autenticación basado en **Tokens JWT (Bearer Tokens)** para proteger sus recursos. Para poder consumir cualquier endpoint protegido, primero necesitarás obtener un token de acceso válido.
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+## Obtención del Token de Acceso
 
-## Authentication
+Para obtener tu token de autenticación, debes seguir estos pasos:
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+1.  **Realiza una solicitud `POST` al endpoint `/v1/login`**.
+2.  **Envía tus credenciales** (`username` y `password`) en el cuerpo (body) de la solicitud, en formato JSON.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+    **Ejemplo de Cuerpo de Solicitud para `/v1/login`:**
+    ```json
+    {
+      "username": "111111", // Reemplaza con tu nombre de usuario real
+      "password": "123456"  // Reemplaza con tu contraseña real
+    }
+    ```
+
+3.  **Procesa la Respuesta:** Si las credenciales son correctas, la API responderá con un código `200 OK` y un cuerpo JSON que contiene, entre otros datos, tu `token` de acceso.
+
+    **Ejemplo de Respuesta Exitosa (200 OK):**
+    ```json
+    {
+      "success": true,
+      "message": "Login exitoso",
+      "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9...", // Este es tu token JWT
+      "id": "...",
+      "username": "...",
+      "nombre": "...",
+      // ... otros campos de usuario
+    }
+    ```
+    Si las credenciales son incorrectas, recibirás una respuesta `401 Unauthorized`. Si faltan parámetros, será `400 Bad Request`.
+
+## Uso del Token en Solicitudes
+
+Una vez que tengas tu `token` JWT, debes incluirlo en el encabezado (`header`) `Authorization` de **todas** las solicitudes subsiguientes a los endpoints protegidos de la API. El formato debe ser `Bearer` seguido de un espacio y luego el token.
+
+**Ejemplo de Encabezado de Autorización:**
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9...tunuevotoken...

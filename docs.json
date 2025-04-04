@@ -46,10 +46,8 @@
           {
             "group": "Endpoint Examples",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/login",
+              "api-reference/endpoint/crearpersona"
             ]
           }
         ]
@@ -81,6 +79,11 @@
       "x": "https://x.com/mintlify",
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  },
+  "api": {
+      "playground": {
+        "proxy": false
     }
   }
 }
