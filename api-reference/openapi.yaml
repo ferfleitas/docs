@@ -126,13 +126,6 @@ paths:
         - Persona
       security:
         - bearerAuth: []
-      parameters:
-        - in: header
-          name: Authorization
-          schema:
-            type: string
-          required: true
-          description: "Bearer token de autenticación (Formato: 'Bearer <token>')"
       requestBody:
         required: true
         content:
@@ -213,5 +206,334 @@ paths:
           description: Falta un parámetro
         '401':
           description: Credencial incorrecta
-components: {}
+  /v1/publico/perfil:
+    get:
+      summary: Listar perfiles
+      tags:
+        - Público
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de perfiles obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    nombre:
+                      type: string
+                      example: Admisional
+              example:
+                - id: 1
+                  nombre: Admisional
+                - id: 2
+                  nombre: Periodico
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+  /v1/persona/agendamiento/list:
+    post:
+      summary: Listar personas agendadas (paginado)
+      tags:
+        - Persona
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filtro:
+                  type: string
+                  example: ""
+                estadoId:
+                  type: integer
+                  example: 1
+                fechaAgendamiento:
+                  type: string
+                  format: date
+                  example: "2025-01-13"
+                pagina:
+                  type: string
+                  example: "1"
+                porPagina:
+                  type: string
+                  example: "10"
+      responses:
+        '200':
+          description: Lista paginada de personas agendadas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        cedula:
+                          type: string
+                        nombre:
+                          type: string
+                        apellido:
+                          type: string
+                        fechaNacimiento:
+                          type: string
+                          format: date
+                        edad:
+                          type: integer
+                        puestoTrabajo:
+                          type: string
+                        sexoId:
+                          type: string
+                        realizaElectrocardiograma:
+                          type: boolean
+                        realizaRadiografia:
+                          type: boolean
+                        perfil:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                        ubicacion:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                        plantaTrabajo:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                        empresa:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                        estado:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nombre:
+                              type: string
+                        fechaAgendamiento:
+                          type: string
+                          format: date
+                        agendadoPor:
+                          type: string
+                        recepcion:
+                          type: object
+                          properties:
+                            entregoMuestraOrina:
+                              type: boolean
+                            entregoMuestraHaces:
+                              type: boolean
+                            fechaRecepcion:
+                              type: string
+                            usuarioRecepcion:
+                              type: string
+                            extraccionSangre:
+                              type: boolean
+                            fechaExtraccion:
+                              type: string
+                            usuarioExtraccion:
+                              type: integer
+                        consulta:
+                          type: object
+                          properties:
+                            electrocardiogramaRealizado:
+                              type: boolean
+                            habitos:
+                              type: object
+                              properties:
+                                fuma:
+                                  type: integer
+                            patologicoFamiliar:
+                              type: object
+                            patologicoPersonal:
+                              type: object
+                            examenFisico:
+                              type: object
+                            fechaConsulta:
+                              type: string
+                            usuarioConsulta:
+                              type: string
+                        electrocardiograma:
+                          type: object
+                          properties:
+                            electrocardiogramaRealizado:
+                              type: boolean
+                            fechaElectrocardiograma:
+                              type: string
+                            usuarioElectrocardiograma:
+                              type: integer
+                        radiografia:
+                          type: object
+                          properties:
+                            radiografia:
+                              type: boolean
+                            fechaRadiografia:
+                              type: string
+                            usuarioRadiografia:
+                              type: integer
+                  pagination:
+                    type: object
+                    properties:
+                      actual:
+                        type: string
+                      cantidad:
+                        type: string
+                      porPagina:
+                        type: string
+                      total:
+                        type: integer
+                  message:
+                    type: string
+                  success:
+                    type: boolean
+        '400':
+          description: Falta un parámetro
+        '401':
+          description: Credencial incorrecta
+  /v1/publico/sucursal:
+    get:
+      summary: Servicio de listar sucursales
+      description: Listar sucursales
+      tags:
+        - Público
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de sucursales obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    entidadId:
+                      type: integer
+                      example: 1
+                    nombre:
+                      type: string
+                      example: "Ubicacion 1"
+                    nroSucursal:
+                      type: integer
+                      example: 1
+        '500':
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal Server Error
+  /v1/persona/{id}/agendamiento/informes:
+    post:
+      summary: Servicio para recuperar informes de la persona
+      description: Servicio para recuperar informes de la persona
+      tags:
+        - Persona
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la persona_agendamiento
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Informes recuperados correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  informeManipulacion:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+                  informeApto:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+                  informeFichaPaciente:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+                  archivoAdjunto1:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+                  archivoAdjunto2:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+                  archivoAdjunto3:
+                    type: string
+                    format: uri
+                    example: "www.informe.com.py"
+        '400':
+          description: Falta un parámetro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Falta un parámetro
+        '401':
+          description: Credencial incorrecta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Credencial incorrecta
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 tags: []

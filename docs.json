@@ -47,7 +47,11 @@
             "group": "Endpoint Examples",
             "pages": [
               "api-reference/endpoint/login",
-              "api-reference/endpoint/crearpersona"
+              "api-reference/endpoint/crearpersona",
+              "api-reference/endpoint/listarperfiles",
+              "api-reference/endpoint/listarpersonasagendadas",
+              "api-reference/endpoint/listarsucursales",
+              "api-reference/endpoint/generarinforme"
             ]
           }
         ]
