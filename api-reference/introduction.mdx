@@ -1,52 +1,24 @@
 ---
-title: 'Autenticación API S-MEC'
-description: 'Cómo autenticarse para usar los endpoints de la API de S-MEC'
+title: 'Backend - Manejo de Pedidos de Botellones'
+description: 'Documentación técnica del backend para la gestión de pedidos de botellones.'
 ---
 
-<Note>
-  Este apartado detalla el proceso de autenticación específico para la API de S-MEC.
-</Note>
 
-## Introducción a la Autenticación
+## Introducción
 
-La API de S-MEC utiliza un esquema de autenticación basado en **Tokens JWT (Bearer Tokens)** para proteger sus recursos. Para poder consumir cualquier endpoint protegido, primero necesitarás obtener un token de acceso válido.
+Este backend está diseñado para gestionar pedidos de botellones de agua, incluyendo funcionalidades para registrar clientes, crear pedidos, actualizar su estado, y generar reportes básicos. 
 
-## Obtención del Token de Acceso
+Está construido con **Node.js**, utilizando **Express** como framework principal y **PostgreSQL** como sistema de base de datos.
 
-Para obtener tu token de autenticación, debes seguir estos pasos:
+## Funcionalidades Principales
 
-1.  **Realiza una solicitud `POST` al endpoint `/v1/login`**.
-2.  **Envía tus credenciales** (`username` y `password`) en el cuerpo (body) de la solicitud, en formato JSON.
-
-    **Ejemplo de Cuerpo de Solicitud para `/v1/login`:**
-    ```json
-    {
-      "username": "111111", // Reemplaza con tu nombre de usuario real
-      "password": "123456"  // Reemplaza con tu contraseña real
-    }
-    ```
-
-3.  **Procesa la Respuesta:** Si las credenciales son correctas, la API responderá con un código `200 OK` y un cuerpo JSON que contiene, entre otros datos, tu `token` de acceso.
-
-    **Ejemplo de Respuesta Exitosa (200 OK):**
-    ```json
-    {
-      "success": true,
-      "message": "Login exitoso",
-      "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9...", // Este es tu token JWT
-      "id": "...",
-      "username": "...",
-      "nombre": "...",
-      // ... otros campos de usuario
-    }
-    ```
-    Si las credenciales son incorrectas, recibirás una respuesta `401 Unauthorized`. Si faltan parámetros, será `400 Bad Request`.
-
-## Uso del Token en Solicitudes
-
-Una vez que tengas tu `token` JWT, debes incluirlo en el encabezado (`header`) `Authorization` de **todas** las solicitudes subsiguientes a los endpoints protegidos de la API. El formato debe ser `Bearer` seguido de un espacio y luego el token.
-
-**Ejemplo de Encabezado de Autorización:**
-
-```http
-Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9...tunuevotoken...
+### 1. Registro de Clientes
+- Endpoint: `POST /clientes`
+- Descripción: Registra nuevos clientes en el sistema.
+- Cuerpo esperado:
+```json
+{
+  "nombre": "Juan Pérez",
+  "direccion": "Av. Principal 123",
+  "telefono": "098112233"
+}
