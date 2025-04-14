@@ -1,13 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Documentacion Botellones",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#e30b3d",
+    "light": "#e30b3d",
+    "dark": "#e30b3d"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon-rasp.svg",
   "navigation": {
     "tabs": [
       {
@@ -16,14 +16,14 @@
           {
             "group": "Get Started",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "introduction"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "How to use mintlify",
             "pages": [
+              "quickstart",
+              "development",
               "essentials/markdown",
               "essentials/code",
               "essentials/images",
@@ -36,22 +36,15 @@
       },
       {
         "tab": "API Reference",
+        "openapi": {
+          "source": "/api-reference/openapi.yaml",
+          "directory": "/api-reference"
+        },
         "groups": [
           {
             "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/login",
-              "api-reference/endpoint/crearpersona",
-              "api-reference/endpoint/listarperfiles",
-              "api-reference/endpoint/listarpersonasagendadas",
-              "api-reference/endpoint/listarsucursales",
-              "api-reference/endpoint/generarinforme"
             ]
           }
         ]
@@ -62,8 +55,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light-rasp.svg",
+    "dark": "/logo/dark-rasp.svg"
   },
   "navbar": {
     "links": [
@@ -71,12 +64,7 @@
         "label": "Support",
         "href": "mailto:hi@mintlify.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "footer": {
     "socials": {
