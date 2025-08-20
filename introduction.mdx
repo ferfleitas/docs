@@ -1,61 +1,40 @@
 ---
-title: Documentacion de Botellones
-description: "Aqui encontraras información relacionada al proyecto Botellones"
+title: Documentación de BANCAME API
+description: "Aquí encontrarás información relacionada al proyecto BANCAME API"
 ---
 
-<img
-  className="block dark:hidden"
-  src="/images/hero-light.png"
-  alt="Hero Light"
-/>
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
-
-## Documentación de la API - Pedidos de Botellones
-
-Esta API permite la gestión de clientes, pedidos y entregas de botellones de agua.
+La **BANCAME API** permite la integración de la pasarela de pagos en sitios web externos (como WooCommerce, entre otros), la generación de iframes de pago y el seguimiento de transacciones desde el portal de comercio de Bancame.
 
 ## Características Principales
 <CardGroup cols={2}>
   <Card
-    title="Gestión de clientes"
-    icon="user-plus"
-    href="/api-reference/clientes"
+    title="Generación de iFrames de Pago"
+    icon="credit-card"
+    href="/api-reference/iframes"
   >
-    Registra y administra los datos de tus clientes.
+    Crea iFrames seguros para integrar la pasarela de pagos en tu sitio web o aplicación.
   </Card>
   <Card
-    title="Creación de pedidos"
+    title="Creación de links de pagos"
     icon="truck-fast"
     href="/api-reference/pedidos"
   >
-    Crea pedidos personalizados para cada cliente.
-  </Card>
-  <Card
-    title="Seguimiento de entregas"
-    icon="clipboard-check"
-    href="/api-reference/estado-pedidos"
-  >
-    Lleva un control del estado de cada pedido.
+    Crea links de pago personalizados.
   </Card>
   <Card
     title="Consultas por fecha"
     icon="calendar-days"
     href="/api-reference/consultas-fecha"
   >
-    Obtén los pedidos programados para una fecha específica.
+    Consultar las transacciones por fechas.
   </Card>
 </CardGroup>
 
 ## API Reference
 Consulta la sección de [API Reference](/api-reference) para ver detalles de cada endpoint disponible, parámetros requeridos y respuestas esperadas.
 
-> **Nota importante**: Esta API está pensada para ser usada por operadores autorizados del sistema de pedidos. El acceso indebido será restringido y monitoreado.
+> **Nota importante**: Esta API está destinada exclusivamente para comercios y operadores autorizados. Todo acceso indebido será monitoreado y bloqueado.
 
 ## Servidor de Desarrollo
 
 La API está disponible para pruebas y desarrollo en la siguiente URL base:
-

@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Documentacion Botellones",
+  "name": "Documentacion Bancame",
   "colors": {
     "primary": "#e30b3d",
     "light": "#e30b3d",
@@ -11,35 +11,22 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Guía",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Inicio",
             "pages": [
               "introduction"
-            ]
-          },
-          {
-            "group": "How to use mintlify",
-            "pages": [
-              "quickstart",
-              "development",
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "API",
         "openapi": "https://petstore3.swagger.io/api/v3/openapi.json",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Documentacion API",
             "pages": [
               "api-reference/introduction"
             ]
