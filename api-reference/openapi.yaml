@@ -1,24 +1,13 @@
 openapi: 3.0.0
 info:
-  title: API de S-MEC
+  title: bancame-api
   version: 1.0.0
   description: >-
 
-    # Documentación de la API de SMEC
+    # Documentación de la API de Bancame
 
 
-    Esta API permite la gestión integral de pacientes, consultas e informes para
-    La SMEC.
-
-
-    ## Características
-
-
-    * **Pacientes**: Registro y consulta de información de pacientes.
-
-    * **Laboratorio**: Registro y seguimiento de análisis laboratoriales.
-
-    * **Informes**: Generación de reportes y estadísticas.
+    Esta API permite la gestión de pasarelas de pago.
 
 
     ## Autenticación
@@ -45,7 +34,7 @@ info:
 
     * [Guía de desarrollo](https://example.com/dev-guide)
 
-    * [Contacto de soporte](mailto:soporte@smec.com)
+    * [Contacto de soporte](mailto:fer@rasp.com)
 
 
     > **Nota importante**: Esta API está destinada únicamente para uso
@@ -54,9 +43,9 @@ info:
     > El acceso no autorizado está prohibido y será monitoreado.
                 
   contact:
-    name: Equipo de Desarrollo SMEC
-    email: desarrollo@smec.com
-    url: https://smec.com/contacto
+    name: Equipo de Desarrollo Bancame
+    email: fer@rasp.com
+    url: https://bancame.com.py
 servers:
   - url: http://localhost:52000
     description: Servidor local de desarrollo
